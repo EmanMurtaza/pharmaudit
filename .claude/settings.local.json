@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(__NEW_LINE_104ceb19c11bf284__ curl:*)",
+      "Bash(__NEW_LINE_104ceb19c11bf284__ echo:*)",
+      "Bash(curl -s http://localhost:3001/api/health)",
+      "Bash(curl -s http://localhost:5173)",
+      "Bash(gh --version)",
+      "Bash(vercel --version)",
+      "Bash(git --version)",
+      "Bash(gh auth:*)",
+      "Bash(vercel whoami:*)"
+    ]
+  }
+}
