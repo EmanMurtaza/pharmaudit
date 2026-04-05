@@ -4,7 +4,7 @@ const auth    = require('./middleware/auth');
 
 const app = express();
 
-app.use(cors());
+app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 
 // Public: login + token verify
@@ -17,7 +17,13 @@ app.use('/api/reports',   auth, require('./routes/reports'));
 
 app.get('/api/health', (_req, res) => res.json({ status: 'ok' }));
 
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`\n  Pharmacy API running at http://localhost:${PORT}\n`);
-});
+// Export for Vercel serverless (experimentalServices wraps this)
+module.exports = app;
+
+// Only listen when run directly (local dev)
+if (require.main === module) {
+  const PORT = process.env.PORT || 3001;
+  app.listen(PORT, () => {
+    console.log(`\n  Pharmacy API running at http://localhost:${PORT}\n`);
+  });
+}
